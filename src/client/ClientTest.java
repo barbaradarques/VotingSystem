@@ -58,7 +58,7 @@ public class ClientTest {
 					case 1: // votar em alguém
 						// <<<<<<<< listar os candidatos
 						if(!loadedCandidates){
-							System.out.println("Não é possível votar, pois não há candidatos registrados no sistema.");
+							System.out.println("Não e possível votar, pois não há candidatos registrados no sistema.");
 							continue;
 						}
 						System.out.println("Insira o código do seu candidato:");
@@ -67,7 +67,7 @@ public class ClientTest {
 						break;
 					case 2: // votar nulo
 						if(!loadedCandidates){
-							System.out.println("Não é possível votar, pois não há candidatos registrados no sistema.");
+							System.out.println("Não e possível votar, pois não há candidatos registrados no sistema.");
 							continue;
 						}
 						registerVote(0);
@@ -75,7 +75,7 @@ public class ClientTest {
 						break;
 					case 3: // votar em branco
 						if(!loadedCandidates){
-							System.out.println("Não é possível votar, pois não há candidatos registrados no sistema.");
+							System.out.println("Nao e possivel votar, pois nao ha candidatos registrados no sistema.");
 							continue;
 						}
 						registerVote(1);
@@ -93,7 +93,7 @@ public class ClientTest {
 						break;
 					case 888: // avisar ao servidor que vai enviar votos e enviá-los
 						if(!loadedCandidates){
-							System.out.println("Não é possível enviar os votos, pois não há candidatos registrados no sistema.");
+							System.out.println("Nao e possivel enviar os votos, pois nao ha candidatos registrados no sistema.");
 							continue;
 						}
 						serverWriter.println("888");
@@ -106,7 +106,7 @@ public class ClientTest {
 						isConnected = false;
 						break;
 					default:
-						System.out.println("Operação inválida!");
+						System.out.println("Operacao invalida!");
 				}
 				
 			}

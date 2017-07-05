@@ -28,7 +28,7 @@ public class ServerTest implements Runnable {
 	public static List<Candidate> createCandidates(){ // <<<<<<<<<<<
 		List<Candidate> dummies = new ArrayList<>(); 
 		dummies.add(new Candidate(13, "Dilma", "PT", 3));
-		dummies.add(new Candidate(45, "Aécio", "PMDB", 2));
+		dummies.add(new Candidate(45, "Aecio", "PMDB", 2));
 		dummies.add(new Candidate(43, "Eduardo Jorge", "PV", 1));
 		
 		try {
@@ -59,6 +59,7 @@ public class ServerTest implements Runnable {
 		Gson gson = new Gson();
 		JsonReader reader;
 		try {
+		
 			reader = new JsonReader(new FileReader("output.json"));
 			candidates = gson.fromJson(reader, CANDIDATES_TYPE);
 		} catch (FileNotFoundException e) {
@@ -111,7 +112,7 @@ public class ServerTest implements Runnable {
 		try {
 			serverSocket = new ServerSocket(1234);
 			isUp = true;
-			System.out.println("Esperando conexões...");
+			System.out.println("Esperando conexoes...");
 			Thread inputThread = new Thread(new ServerTest());
 			inputThread.setDaemon(true);
 			inputThread.start();
@@ -125,7 +126,7 @@ public class ServerTest implements Runnable {
 				ClientThread clientThread = new ClientThread(clientSocket, noVotesJSON); // <<<<<<< daemon
 				clientThread.start(); // <<<<< mudar pra detectar o servidor fechado aqui
 			} catch (IOException ioe) {
-				if(isUp) // se o servidor tiver sido derrubado de propósito, não precisa imprimir
+				if(isUp) // se o servidor tiver sido derrubado de proposito, nao precisa imprimir
 					ioe.printStackTrace();
 			}
 		}
@@ -140,7 +141,7 @@ public class ServerTest implements Runnable {
 			isUp = false;
 		}
 		try {
-			serverSocket.close(); // <<<< como garantir q é fechado mesmo q o processo se encerre acidentalmente?
+			serverSocket.close(); // <<<< como garantir q e fechado mesmo q o processo se encerre acidentalmente?
 		} catch (IOException e) {
 //			e.printStackTrace();
 		}

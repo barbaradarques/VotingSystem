@@ -2,7 +2,7 @@ package global;
 
 public class Candidate implements Cloneable {
 
-//    int código_votacao;
+//    int codigo_votacao;
 //    String nome_candidato;
 //    String partido;
 //    int num_votos;
@@ -28,8 +28,8 @@ public class Candidate implements Cloneable {
 	
 	@Override
 	public String toString() {
-		return name + " | Código: " + code + " Partido: " + party 
-				+ " Número de Votos: " + num_votes;
+		return name + " | Codigo: " + code + " Partido: " + party 
+				+ " Numero de Votos: " + num_votes;
 	}
 	
 	@Override
