@@ -30,7 +30,7 @@ public class ClientTest {
 				return;
 			}
 		}
-		System.out.println("Candidato não encontrado. Tente novamente.");
+		System.out.println("Candidato nao encontrado. Tente novamente.");
 	}
 	
 	public static void main(String[] args) {
@@ -46,7 +46,7 @@ public class ClientTest {
 			boolean isConnected = true;
 			boolean loadedCandidates = false;
 			while(isConnected){
-				System.out.print("\nEscolha uma operação: "
+				System.out.print("\nEscolha uma operacao: "
 						+ "\n [1] Votar em um candidato"
 						+ "\n [2] Votar nulo"
 						+ "\n [3] Votar em branco"
@@ -55,19 +55,19 @@ public class ClientTest {
 						+ "\n>> ");
 				int opcode = scan.nextInt();
 				switch(opcode){
-					case 1: // votar em alguém
+					case 1: // votar em alguem
 						// <<<<<<<< listar os candidatos
 						if(!loadedCandidates){
-							System.out.println("Não e possível votar, pois não há candidatos registrados no sistema.");
+							System.out.println("Nao e possivel votar, pois nao há candidatos registrados no sistema.");
 							continue;
 						}
-						System.out.println("Insira o código do seu candidato:");
+						System.out.println("Insira o codigo do seu candidato:");
 						int candidate = scan.nextInt();
 						registerVote(candidate);
 						break;
 					case 2: // votar nulo
 						if(!loadedCandidates){
-							System.out.println("Não e possível votar, pois não há candidatos registrados no sistema.");
+							System.out.println("Nao e possivel votar, pois nao há candidatos registrados no sistema.");
 							continue;
 						}
 						registerVote(0);
@@ -113,9 +113,9 @@ public class ClientTest {
 			
 		} catch (IOException e) {
 			if(neverConnected){
-				System.out.println("Não foi possível conectar ao servidor!");
+				System.out.println("Nao foi possivel conectar ao servidor!");
 			} else {
-				System.out.println("A conexão com o servidor caiu.");
+				System.out.println("A conexao com o servidor caiu.");
 			}
 			e.printStackTrace();
 		} finally {
@@ -126,7 +126,7 @@ public class ClientTest {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Aplicação do cliente encerrada!");
+		System.out.println("Aplicacao do cliente encerrada!");
 	}
 
 }
