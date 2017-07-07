@@ -24,21 +24,8 @@ public class ServerTest implements Runnable {
 	public static volatile boolean isUp;
 	public static List<Candidate> candidates;
 	public static String noVotesJSON; // JSON da lista de candidatos com votos zerados
+	public static final String JSONfilename = "votes.json";
 	
-	public static List<Candidate> createCandidates(){ // <<<<<<<<<<<
-		List<Candidate> dummies = new ArrayList<>(); 
-		dummies.add(new Candidate(13, "Dilma", "PT", 3));
-		dummies.add(new Candidate(45, "Aecio", "PMDB", 2));
-		dummies.add(new Candidate(43, "Eduardo Jorge", "PV", 1));
-		
-		try {
-			genNoVotesJSON();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return dummies;
-	}
 	
 	public static String candidates2json(){
 		Gson gson = new Gson();  
@@ -46,7 +33,7 @@ public class ServerTest implements Runnable {
 	}
 	
 	public static void candidates2file(){
-		try (Writer writer = new FileWriter("output.json")) {
+		try (Writer writer = new FileWriter(JSONfilename)) {
 		    Gson gson = new GsonBuilder().create();
 		    gson.toJson(candidates, writer);
 		} catch (IOException e) {
@@ -60,7 +47,7 @@ public class ServerTest implements Runnable {
 		JsonReader reader;
 		try {
 		
-			reader = new JsonReader(new FileReader("output.json"));
+			reader = new JsonReader(new FileReader(JSONfilename));
 			candidates = gson.fromJson(reader, CANDIDATES_TYPE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -92,11 +79,7 @@ public class ServerTest implements Runnable {
 		
 		noVotes.forEach(cand-> cand.num_votes=0);
 		Gson gson = new Gson();  
-		noVotesJSON =  gson.toJson(noVotes); 
-//		System.out.println(noVotesJSON);
-//		noVotes.forEach(System.out::println);
-//		candidates.forEach(System.out::println);
-		
+		noVotesJSON =  gson.toJson(noVotes); 		
 	}
 	
 	public static void main(String args[]) {
@@ -110,7 +93,7 @@ public class ServerTest implements Runnable {
 		
 		isUp = false;
 		try {
-			serverSocket = new ServerSocket(1234);
+			serverSocket = new ServerSocket(40011);
 			isUp = true;
 			System.out.println("Esperando conexoes...");
 			Thread inputThread = new Thread(new ServerTest());
@@ -123,8 +106,8 @@ public class ServerTest implements Runnable {
 		while (isUp) {
 			try {
 				Socket clientSocket = serverSocket.accept();
-				ClientThread clientThread = new ClientThread(clientSocket, noVotesJSON); // <<<<<<< daemon
-				clientThread.start(); // <<<<< mudar pra detectar o servidor fechado aqui
+				ClientThread clientThread = new ClientThread(clientSocket, noVotesJSON); 
+				clientThread.start(); 
 			} catch (IOException ioe) {
 				if(isUp) // se o servidor tiver sido derrubado de proposito, nao precisa imprimir
 					ioe.printStackTrace();
@@ -141,7 +124,7 @@ public class ServerTest implements Runnable {
 			isUp = false;
 		}
 		try {
-			serverSocket.close(); // <<<< como garantir q e fechado mesmo q o processo se encerre acidentalmente?
+			serverSocket.close(); 
 		} catch (IOException e) {
 //			e.printStackTrace();
 		}

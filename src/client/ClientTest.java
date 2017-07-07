@@ -37,7 +37,7 @@ public class ClientTest {
 		boolean neverConnected = true;
 		Scanner scan = null;
 		try {
-			serverSocket = new Socket("localhost", 1234);
+			serverSocket = new Socket("localhost", 40012);
 			neverConnected = false;
 			serverReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
 			serverWriter = new PrintWriter(serverSocket.getOutputStream(), true);
@@ -58,7 +58,7 @@ public class ClientTest {
 					case 1: // votar em alguem
 						// <<<<<<<< listar os candidatos
 						if(!loadedCandidates){
-							System.out.println("Nao e possivel votar, pois nao há candidatos registrados no sistema.");
+							System.out.println("Nao e possivel votar, pois nao ha candidatos registrados no sistema.");
 							continue;
 						}
 						System.out.println("Insira o codigo do seu candidato:");
@@ -67,7 +67,7 @@ public class ClientTest {
 						break;
 					case 2: // votar nulo
 						if(!loadedCandidates){
-							System.out.println("Nao e possivel votar, pois nao há candidatos registrados no sistema.");
+							System.out.println("Nao e possivel votar, pois nao ha candidatos registrados no sistema.");
 							continue;
 						}
 						registerVote(0);
@@ -91,7 +91,7 @@ public class ClientTest {
 						System.out.println("recebido do servidor: " + noVotesJSON); // <<
 						loadedCandidates = true;
 						break;
-					case 888: // avisar ao servidor que vai enviar votos e enviá-los
+					case 888: // avisar ao servidor que vai enviar votos e envia-los
 						if(!loadedCandidates){
 							System.out.println("Nao e possivel enviar os votos, pois nao ha candidatos registrados no sistema.");
 							continue;

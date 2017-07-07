@@ -37,15 +37,15 @@ class ClientThread extends Thread {
 				String opcode = clientReader.readLine();
 				switch(opcode){
 					case "999": // pedido de envio de candidatos
-						System.out.println("Pedido de envio de candidatos recebido!");
-						System.out.println("o que vou enviar ao cliente: " + noVotesJSON); // <<<
+						// System.out.println("Pedido de envio de candidatos recebido!");
+						// System.out.println("o que vou enviar ao cliente: " + noVotesJSON); // <<<
 						clientWriter.println(noVotesJSON);
 						clientWriter.flush(); // <<< mudar arg pra true
 						break;
 					case "888": // aviso de envio de votos
-						System.out.println("Aviso de envio de votos recebido!");
+						// System.out.println("Aviso de envio de votos recebido!");
 						String newVotesJSON = clientReader.readLine();
-						System.out.println("o que eu recebi do cliente: " + newVotesJSON); // <<<
+						// System.out.println("o que eu recebi do cliente: " + newVotesJSON); // <<<
 						ServerTest.registerVotes(newVotesJSON);
 						isConnected = false;
 						break;
